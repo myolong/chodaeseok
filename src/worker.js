@@ -174,7 +174,7 @@ export class Store extends DurableObject {
     const { kind, row } = this.who(token);
     const msg = clip(b.msg, 800);
     need(msg.length >= 10, "제안 내용을 10자 이상 적어 주세요.");
-    need(b.nofee === true, "초대석은 출연료나 출연비가 오가지 않는 인터뷰만 연결해요. 확인란에 체크해 주세요.");
+    need(b.nofee === true, "출연 조건은 상대와 직접 정하고 초대석은 관여하지 않는다는 확인란에 체크해 주세요.");
     let guest, channel, dir;
     if (kind === "channel") {
       const g = this.one("SELECT id FROM guests WHERE id=? AND hidden=0", clip(b.to, 20));
