@@ -901,5 +901,492 @@
 "about": "호주 SBS 한국어 프로그램의 인물 인터뷰 팟캐스트. 호주에서 활동하는 한인을 만남.",
 "subs": "",
 "recruit": ""
+},
+{
+"id": "c63",
+"name": "돈버는사장님",
+"url": "https://www.youtube.com/@%EB%8F%88%EB%B2%84%EB%8A%94%EC%82%AC%EC%9E%A5%EB%8B%98",
+"platform": "유튜브",
+"field": "창업·경영",
+"topics": [
+"사장님",
+"장사",
+"인생 이야기"
+],
+"about": "사장님들의 이야기를 영상으로 담는 인터뷰 채널.",
+"subs": "19.2만",
+"recruit": "소개란에 출연 신청 안내"
+},
+{
+"id": "c64",
+"name": "초월스토리 - 돈버는 사장님들",
+"url": "https://www.youtube.com/@chowolstoryyoutube",
+"platform": "유튜브",
+"field": "창업·경영",
+"topics": [
+"사장님",
+"직업",
+"성공과 실패"
+],
+"about": "성공·실패·노하우·특별한 사연을 가진 사람들의 직업 이야기. 누구나 신청 가능하다고 안내.",
+"subs": "7.62만",
+"recruit": "소개란에 출연 신청 안내"
+},
+{
+"id": "c65",
+"name": "장사건물주 강호동",
+"url": "https://www.youtube.com/@%EA%B1%B4%EB%AC%BC%EC%A3%BC%EA%B0%95%ED%98%B8%EB%8F%99tv",
+"platform": "유튜브",
+"field": "창업·경영",
+"topics": [
+"장사",
+"사업 노하우",
+"성공 비법"
+],
+"about": "장사·사업 등 각 분야에서 성공한 사람을 초대하는 채널.",
+"subs": "53.2만",
+"recruit": "소개란에 출연 신청 안내"
+},
+{
+"id": "c66",
+"name": "사장찍어주는남자",
+"url": "https://www.youtube.com/@sajjiknam_",
+"platform": "유튜브",
+"field": "창업·경영",
+"topics": [
+"사장님",
+"역경",
+"창업 스토리"
+],
+"about": "역경을 딛고 일어선 사장님들의 이야기를 기록하는 채널.",
+"subs": "14.3만",
+"recruit": "소개란에 출연 신청 안내"
+},
+{
+"id": "c67",
+"name": "나는 사장님",
+"url": "https://www.youtube.com/@iamsazangnim",
+"platform": "유튜브",
+"field": "창업·경영",
+"topics": [
+"사장님",
+"도전",
+"창업"
+],
+"about": "도전하는 사장님들을 모시는 인터뷰 채널.",
+"subs": "14.1만",
+"recruit": "소개란에 출연 신청 안내"
+},
+{
+"id": "c68",
+"name": "맥형TV",
+"url": "https://www.youtube.com/@macbroTV",
+"platform": "유튜브",
+"field": "창업·경영",
+"topics": [
+"자영업",
+"창업",
+"사연"
+],
+"about": "자영업자들의 희로애락을 현실적으로 담는 채널. 사연 있는 사장님 출연 신청을 받음.",
+"subs": "11.4만",
+"recruit": "소개란에 출연 신청 안내"
+},
+{
+"id": "c69",
+"name": "나는 사장이다",
+"url": "https://www.youtube.com/@%EB%82%98%EB%8A%94%EC%82%AC%EC%9E%A5%EC%9D%B4%EB%8B%A4-s7q",
+"platform": "유튜브",
+"field": "창업·경영",
+"topics": [
+"사장님",
+"창업"
+],
+"about": "사장님 인터뷰 채널.",
+"subs": "4.62천",
+"recruit": "소개란에 출연 신청 안내"
+},
+{
+"id": "c70",
+"name": "창업이야기",
+"url": "https://www.youtube.com/@%EC%B0%BD%EC%97%85%EC%9D%B4%EC%95%BC%EA%B8%B0",
+"platform": "유튜브",
+"field": "창업·경영",
+"topics": [
+"창업",
+"사장님"
+],
+"about": "창업 이야기를 다루는 인터뷰 채널.",
+"subs": "4.43천",
+"recruit": "소개란에 출연 문의 안내"
+},
+{
+"id": "c71",
+"name": "창업의 모든 것",
+"url": "https://www.youtube.com/@%EC%B0%BD%EC%97%85%EC%9D%98%EB%AA%A8%EB%93%A0%EA%B2%83",
+"platform": "유튜브",
+"field": "창업·경영",
+"topics": [
+"창업",
+"자영업"
+],
+"about": "창업자 인터뷰 채널.",
+"subs": "7.95천",
+"recruit": "소개란에 출연 신청 안내"
+},
+{
+"id": "c72",
+"name": "그사이(그 사장님의 이야기)",
+"url": "https://www.youtube.com/@ceohistory",
+"platform": "유튜브",
+"field": "창업·경영",
+"topics": [
+"자영업",
+"기술직",
+"프리랜서"
+],
+"about": "자영업·기술직·프리랜서·스타트업 등 자기 자리를 만든 사람들을 만나는 채널.",
+"subs": "529",
+"recruit": "소개란에 출연 신청 안내"
+},
+{
+"id": "c73",
+"name": "시골사장님",
+"url": "https://www.youtube.com/@%EC%8B%9C%EA%B3%A8%EC%82%AC%EC%9E%A5",
+"platform": "유튜브",
+"field": "여행·지역",
+"topics": [
+"지역 창업",
+"귀농귀촌",
+"시골살이"
+],
+"about": "지역에서 자기 속도로 일하는 사람들의 이야기를 담는 채널.",
+"subs": "1.98천",
+"recruit": "소개란에 출연 문의 안내"
+},
+{
+"id": "c74",
+"name": "멘토의 다락방",
+"url": "https://www.youtube.com/@mentofolio",
+"platform": "유튜브",
+"field": "커리어·직장",
+"topics": [
+"멘토",
+"인사이트",
+"전문가"
+],
+"about": "이 시대 멘토들의 인사이트를 나누는 인터뷰 채널.",
+"subs": "10만",
+"recruit": "소개란에 출연 신청 안내"
+},
+{
+"id": "c75",
+"name": "잡담TV",
+"url": "https://www.youtube.com/@%EC%9E%A1%EB%8B%B4TV",
+"platform": "유튜브",
+"field": "커리어·직장",
+"topics": [
+"직업 인터뷰",
+"현장",
+"인생 이야기"
+],
+"about": "현장을 찾아가 쉽게 만나기 힘든 직업과 인생 이야기를 듣는 채널.",
+"subs": "5.32천",
+"recruit": "소개란에 출연 신청 안내"
+},
+{
+"id": "c76",
+"name": "다함께 잡잡잡",
+"url": "https://www.youtube.com/@%EB%8B%A4%ED%95%A8%EA%BB%98_%EC%9E%A1%EC%9E%A1%EC%9E%A1",
+"platform": "유튜브",
+"field": "커리어·직장",
+"topics": [
+"다양한 직업",
+"N잡",
+"직업 소개"
+],
+"about": "도전할 수 있는 다양한 직업을 소개하는 채널.",
+"subs": "6.2천",
+"recruit": "소개란에 출연 신청 안내"
+},
+{
+"id": "c77",
+"name": "현명한 은퇴자들",
+"url": "https://www.youtube.com/@wise_retiree",
+"platform": "유튜브",
+"field": "커리어·직장",
+"topics": [
+"인생 2막",
+"은퇴",
+"시니어"
+],
+"about": "퇴직 후 현금흐름을 만든 사람들을 찾아가 인터뷰하는 채널.",
+"subs": "8.64만",
+"recruit": "소개란에 출연 신청 안내"
+},
+{
+"id": "c78",
+"name": "노른자인생",
+"url": "https://www.youtube.com/@%EC%9D%B8%EC%83%9D100year",
+"platform": "유튜브",
+"field": "커리어·직장",
+"topics": [
+"시니어",
+"은퇴 후 일",
+"인생 이야기"
+],
+"about": "먼저 살아본 어른들의 일과 인생 이야기를 듣는 채널.",
+"subs": "3.61천",
+"recruit": "소개란에 출연 문의 안내"
+},
+{
+"id": "c79",
+"name": "너와 나의 은퇴학교",
+"url": "https://www.youtube.com/@%EC%9D%80%ED%87%B4%ED%95%99%EA%B5%90",
+"platform": "유튜브",
+"field": "커리어·직장",
+"topics": [
+"은퇴",
+"노후",
+"전문가"
+],
+"about": "은퇴·노후 분야 전문가를 인터뷰하는 채널.",
+"subs": "69.9만",
+"recruit": "소개란에 출연 문의 안내"
+},
+{
+"id": "c80",
+"name": "너와 나의 경제학교",
+"url": "https://www.youtube.com/@%EB%A8%B8%EB%8B%88",
+"platform": "유튜브",
+"field": "투자·재테크",
+"topics": [
+"경제",
+"전문가",
+"재테크"
+],
+"about": "경제 분야 전문가를 인터뷰하는 채널.",
+"subs": "4.04만",
+"recruit": "소개란에 출연 문의 안내"
+},
+{
+"id": "c81",
+"name": "쩐문가",
+"url": "https://www.youtube.com/@%EC%A9%90%EB%AC%B8%EA%B0%80",
+"platform": "유튜브",
+"field": "투자·재테크",
+"topics": [
+"돈 이야기",
+"전문가 대화"
+],
+"about": "돈이 되는 대화를 나누는 인터뷰 채널.",
+"subs": "16.9만",
+"recruit": "소개란에 출연 신청 안내"
+},
+{
+"id": "c82",
+"name": "돈공방",
+"url": "https://www.youtube.com/@dontgongboo",
+"platform": "유튜브",
+"field": "창업·경영",
+"topics": [
+"부업",
+"N잡",
+"실전 사례"
+],
+"about": "부업으로 성과를 낸 사람들의 실제 인터뷰 채널.",
+"subs": "5.27만",
+"recruit": "소개란에 출연 신청 안내"
+},
+{
+"id": "c83",
+"name": "돈버는N잡스",
+"url": "https://www.youtube.com/@%EB%8F%88%EB%B2%84%EB%8A%94N%EC%9E%A1%EC%8A%A4",
+"platform": "유튜브",
+"field": "창업·경영",
+"topics": [
+"디지털 노마드",
+"N잡",
+"부업"
+],
+"about": "집에서, 여행하며 돈 버는 사람들의 이야기.",
+"subs": "5.99천",
+"recruit": "소개란에 출연 문의 안내"
+},
+{
+"id": "c84",
+"name": "부업주방",
+"url": "https://www.youtube.com/@buchujeon",
+"platform": "유튜브",
+"field": "창업·경영",
+"topics": [
+"부업",
+"요즘 일"
+],
+"about": "90년대생 PD가 요즘 부업과 그 사람들을 소개하는 채널.",
+"subs": "3.64천",
+"recruit": "소개란에 출연 신청 안내"
+},
+{
+"id": "c85",
+"name": "부업에서 본업까지",
+"url": "https://www.youtube.com/@%EB%B6%80%EC%97%85%EC%97%90%EC%84%9C%EB%B3%B8%EC%97%85%EA%B9%8C%EC%A7%80",
+"platform": "유튜브",
+"field": "창업·경영",
+"topics": [
+"부업",
+"전문가"
+],
+"about": "부업 전문가를 인터뷰하는 채널.",
+"subs": "2.24천",
+"recruit": "소개란에 출연 문의 안내"
+},
+{
+"id": "c86",
+"name": "셀링남 조명재",
+"url": "https://www.youtube.com/@sellingnam",
+"platform": "유튜브",
+"field": "마케팅·브랜딩",
+"topics": [
+"온라인 판매",
+"셀러",
+"커머스"
+],
+"about": "온라인 판매·커머스 분야 인터뷰를 하는 채널.",
+"subs": "6.62천",
+"recruit": "소개란에 출연 신청 안내"
+},
+{
+"id": "c87",
+"name": "빌더 조쉬 Builder Josh",
+"url": "https://www.youtube.com/@builderjoshkim",
+"platform": "유튜브",
+"field": "IT·개발",
+"topics": [
+"AI 활용",
+"기업 사례",
+"팟캐스트"
+],
+"about": "'HOW I AI' 팟캐스트에서 AI로 일하는 회사를 인터뷰. 출연 기업 모집 중이라고 안내.",
+"subs": "8.37만",
+"recruit": "소개란에 출연 신청 안내"
+},
+{
+"id": "c88",
+"name": "행가집",
+"url": "https://www.youtube.com/@hgzip-space",
+"platform": "유튜브",
+"field": "디자인·예술",
+"topics": [
+"공간",
+"집",
+"사람"
+],
+"about": "사람을 통해 공간을 이야기하는 디자인하우스 채널.",
+"subs": "15.2만",
+"recruit": "소개란에 출연 문의 안내"
+},
+{
+"id": "c89",
+"name": "민터뷰",
+"url": "https://www.youtube.com/@%EB%AF%BC%ED%84%B0%EB%B7%B0",
+"platform": "유튜브",
+"field": "강의·교육",
+"topics": [
+"교육",
+"공부법",
+"전문가"
+],
+"about": "교육 기자가 분야별 전문가를 만나 교육과 삶을 이야기하는 채널.",
+"subs": "567",
+"recruit": ""
+},
+{
+"id": "c90",
+"name": "청춘집합소",
+"url": "https://www.youtube.com/@youthtv2030",
+"platform": "유튜브",
+"field": "기타",
+"topics": [
+"사업가",
+"프리랜서",
+"예술가"
+],
+"about": "다양하게 살아가는 사람들을 인터뷰. 남녀노소 누구나 출연 가능하다고 안내.",
+"subs": "3.61만",
+"recruit": "소개란에 출연 신청 안내"
+},
+{
+"id": "c91",
+"name": "남다른 사람들",
+"url": "https://www.youtube.com/@namsaram",
+"platform": "유튜브",
+"field": "기타",
+"topics": [
+"사연",
+"실패와 성공",
+"삶의 노하우"
+],
+"about": "주변의 다양한 사람들과 진솔한 이야기를 나누는 채널.",
+"subs": "4.9만",
+"recruit": "소개란에 출연 신청 안내"
+},
+{
+"id": "c92",
+"name": "보통사람들_ordinary people",
+"url": "https://www.youtube.com/@_ordinary_people",
+"platform": "유튜브",
+"field": "기타",
+"topics": [
+"보통의 삶",
+"인터뷰"
+],
+"about": "보통 사람들의 가치를 이야기하는 인터뷰 채널.",
+"subs": "2.93만",
+"recruit": "소개란에 출연 신청 안내"
+},
+{
+"id": "c93",
+"name": "비상하는시간",
+"url": "https://www.youtube.com/@fallingtime24",
+"platform": "유튜브",
+"field": "기타",
+"topics": [
+"인생 이야기",
+"기록"
+],
+"about": "소중한 오늘을 기록하는 인터뷰 채널.",
+"subs": "5.23천",
+"recruit": "소개란에 출연 신청 안내"
+},
+{
+"id": "c94",
+"name": "누구나주인공",
+"url": "https://www.youtube.com/@%EB%88%84%EA%B5%AC%EB%82%98%EC%A3%BC%EC%9D%B8%EA%B3%B5",
+"platform": "유튜브",
+"field": "기타",
+"topics": [
+"성공과 실패",
+"도전",
+"사연"
+],
+"about": "세상 모든 사람들의 이야기를 담는 인터뷰 전문 채널.",
+"subs": "1.85천",
+"recruit": "소개란에 출연 신청 안내"
+},
+{
+"id": "c95",
+"name": "호주사는 한국인들",
+"url": "https://www.youtube.com/@%ED%98%B8%EC%A3%BC%EC%82%AC%EB%8A%94%ED%95%9C%EA%B5%AD%EC%9D%B8%EB%93%A4",
+"platform": "유튜브",
+"field": "여행·지역",
+"topics": [
+"호주",
+"해외 직업",
+"이민"
+],
+"about": "호주에서 일하고 사는 한국인의 직업과 삶을 인터뷰하는 채널.",
+"subs": "667",
+"recruit": "소개란에 출연 문의 안내"
 }
 ]
