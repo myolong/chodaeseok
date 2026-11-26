@@ -1,0 +1,523 @@
+[
+{
+"id": "c01",
+"name": "EO Korea",
+"url": "https://www.youtube.com/@eo_korea",
+"platform": "유튜브",
+"field": "창업·경영",
+"topics": [
+"스타트업",
+"창업가",
+"기업 이야기"
+],
+"about": "창업가와 기업 이야기를 깊게 다루는 인터뷰 채널.",
+"subs": "77.1만",
+"recruit": ""
+},
+{
+"id": "c02",
+"name": "하고잡",
+"url": "https://www.youtube.com/@hagojob101",
+"platform": "유튜브",
+"field": "창업·경영",
+"topics": [
+"젊은 창업자",
+"창업 스토리"
+],
+"about": "젊은 창업자들을 인터뷰하는 채널.",
+"subs": "2.25천",
+"recruit": ""
+},
+{
+"id": "c03",
+"name": "친절한 인터뷰",
+"url": "https://www.youtube.com/@trend_interview",
+"platform": "유튜브",
+"field": "창업·경영",
+"topics": [
+"사장님",
+"장사 노하우"
+],
+"about": "성공한 사장님들의 노하우를 인터뷰.",
+"subs": "1.49천",
+"recruit": "소개란에 출연 문의 안내"
+},
+{
+"id": "c04",
+"name": "그사람인터뷰",
+"url": "https://www.youtube.com/@%EA%B7%B8%EC%82%AC%EB%9E%8C%EC%9D%B8%ED%84%B0%EB%B7%B0",
+"platform": "유튜브",
+"field": "커리어·직장",
+"topics": [
+"인생 이야기",
+"도전과 실패"
+],
+"about": "자기 인생을 살아가는 사람들의 이야기를 기록(구 월급너머의세계).",
+"subs": "7.93천",
+"recruit": ""
+},
+{
+"id": "c05",
+"name": "오늘을인터뷰",
+"url": "https://www.youtube.com/@%EC%98%A4%EB%8A%98%EC%9D%84%EC%9D%B8%ED%84%B0%EB%B7%B0",
+"platform": "유튜브",
+"field": "커리어·직장",
+"topics": [
+"직업인",
+"하루 일과"
+],
+"about": "다양한 직업인의 오늘을 담는 인터뷰.",
+"subs": "5.13만",
+"recruit": ""
+},
+{
+"id": "c06",
+"name": "일하는사장님들인터뷰",
+"url": "https://www.youtube.com/@%EC%9D%BC%ED%95%98%EB%8A%94%EC%82%AC%EC%9E%A5%EB%8B%98%EB%93%A4%EC%9D%B8%ED%84%B0%EB%B7%B0",
+"platform": "유튜브",
+"field": "창업·경영",
+"topics": [
+"자영업",
+"현장 사장님"
+],
+"about": "전국 곳곳 일하는 사장님들의 현장을 인터뷰.",
+"subs": "7.77천",
+"recruit": "소개란에 출연 문의 안내"
+},
+{
+"id": "c07",
+"name": "이웃집사장",
+"url": "https://www.youtube.com/@eut.sajang",
+"platform": "유튜브",
+"field": "창업·경영",
+"topics": [
+"부업",
+"제2의 인생"
+],
+"about": "부업으로 수익을 내는 사람들의 실제 이야기.",
+"subs": "29.3만",
+"recruit": ""
+},
+{
+"id": "c08",
+"name": "5000만 인터뷰",
+"url": "https://www.youtube.com/@5000%EB%A7%8C%EC%9D%B8%ED%84%B0%EB%B7%B0",
+"platform": "유튜브",
+"field": "커리어·직장",
+"topics": [
+"직업 소개",
+"성공과 실패"
+],
+"about": "다양한 직업과 직군을 소개하는 인터뷰.",
+"subs": "280",
+"recruit": "소개란에 출연 신청 안내"
+},
+{
+"id": "c09",
+"name": "인터뷰온",
+"url": "https://www.youtube.com/@itvw",
+"platform": "유튜브",
+"field": "창업·경영",
+"topics": [
+"장사",
+"인생의 변곡점"
+],
+"about": "장사와 인생의 변곡점을 진솔하게 담는 인터뷰.",
+"subs": "1.96천",
+"recruit": "소개란에 출연 신청 안내"
+},
+{
+"id": "c10",
+"name": "인터뷰노트",
+"url": "https://www.youtube.com/@%EC%9D%B8%ED%84%B0%EB%B7%B0%EB%85%B8%ED%8A%B8q",
+"platform": "유튜브",
+"field": "커리어·직장",
+"topics": [
+"창업가",
+"프리랜서",
+"일 이야기"
+],
+"about": "창업가·프리랜서 등 일하는 사람들의 노트를 기록.",
+"subs": "5.76천",
+"recruit": ""
+},
+{
+"id": "c11",
+"name": "JOB상인TV",
+"url": "https://www.youtube.com/@JobSanginTV",
+"platform": "유튜브",
+"field": "커리어·직장",
+"topics": [
+"진로",
+"직업 인터뷰"
+],
+"about": "진짜 직업인을 만나는 인터뷰 채널.",
+"subs": "861",
+"recruit": ""
+},
+{
+"id": "c12",
+"name": "직업의모든것",
+"url": "https://www.youtube.com/@jikmo.",
+"platform": "유튜브",
+"field": "커리어·직장",
+"topics": [
+"직업",
+"평범한 사람들의 이야기"
+],
+"about": "평범한 사람들의 특별한 직업 이야기.",
+"subs": "106만",
+"recruit": ""
+},
+{
+"id": "c13",
+"name": "진술한 인터뷰",
+"url": "https://www.youtube.com/@%EC%A7%84%EC%88%A0%ED%95%9C%EC%9D%B8%ED%84%B0%EB%B7%B0",
+"platform": "유튜브",
+"field": "커리어·직장",
+"topics": [
+"연봉",
+"직업 현실"
+],
+"about": "직업인의 일상·연봉·고충을 솔직하게 묻는 인터뷰.",
+"subs": "431",
+"recruit": ""
+},
+{
+"id": "c14",
+"name": "직업인",
+"url": "https://www.youtube.com/@HumanLifeWork",
+"platform": "유튜브",
+"field": "커리어·직장",
+"topics": [
+"직업",
+"인생 사연"
+],
+"about": "직업과 인생 이야기를 소개하는 인터뷰.",
+"subs": "148",
+"recruit": "소개란에 출연 신청 안내"
+},
+{
+"id": "c15",
+"name": "엔터뷰(N년차인터뷰)",
+"url": "https://www.youtube.com/@N%EB%85%84%EC%B0%A8%EC%9D%B8%ED%84%B0%EB%B7%B0",
+"platform": "유튜브",
+"field": "커리어·직장",
+"topics": [
+"현직자",
+"경력"
+],
+"about": "현직자의 솔직한 경력 인터뷰.",
+"subs": "2.18천",
+"recruit": "소개란에 출연 문의 안내"
+},
+{
+"id": "c16",
+"name": "얼간작가",
+"url": "https://www.youtube.com/@idiot0211",
+"platform": "유튜브",
+"field": "커리어·직장",
+"topics": [
+"현장 취재",
+"직업"
+],
+"about": "직업과 사람에 대한 현장 취재 인터뷰. 출연 비용을 받지 않는다고 밝힘.",
+"subs": "2.47만",
+"recruit": "소개란에 출연 안내"
+},
+{
+"id": "c17",
+"name": "서작가이너뷰",
+"url": "https://www.youtube.com/@%EC%84%9C%EC%9E%91%EA%B0%80%EC%9D%B4%EB%84%88%EB%B7%B0",
+"platform": "유튜브",
+"field": "커리어·직장",
+"topics": [
+"전문가",
+"삶의 균형"
+],
+"about": "방송작가가 전문가를 만나 속 깊은 이야기를 나누는 인터뷰.",
+"subs": "1.03만",
+"recruit": "소개란에 출연 신청 안내"
+},
+{
+"id": "c18",
+"name": "BYARTK 작가인터뷰",
+"url": "https://www.youtube.com/@byartk9604",
+"platform": "유튜브",
+"field": "디자인·예술",
+"topics": [
+"미술 작가",
+"전시"
+],
+"about": "예술인의 창작 활동을 인터뷰하는 채널.",
+"subs": "1.11천",
+"recruit": ""
+},
+{
+"id": "c19",
+"name": "보이드 VOID",
+"url": "https://www.youtube.com/@VoidLabel",
+"platform": "유튜브",
+"field": "디자인·예술",
+"topics": [
+"아티스트",
+"예술"
+],
+"about": "아티스트 인터뷰와 예술 콘텐츠를 만드는 스튜디오.",
+"subs": "1.71천",
+"recruit": ""
+},
+{
+"id": "c20",
+"name": "김평안",
+"url": "https://www.youtube.com/@pyeongan_media",
+"platform": "유튜브",
+"field": "디자인·예술",
+"topics": [
+"예술적 영감",
+"창작자"
+],
+"about": "예술적 영감을 주제로 창작자를 만나는 채널.",
+"subs": "903",
+"recruit": "소개란에 출연 문의 안내"
+},
+{
+"id": "c21",
+"name": "최인아책방",
+"url": "https://www.youtube.com/@inabooks",
+"platform": "유튜브",
+"field": "책·글쓰기",
+"topics": [
+"저자",
+"북토크"
+],
+"about": "선릉 최인아책방의 저자 북토크와 강연.",
+"subs": "2.49만",
+"recruit": ""
+},
+{
+"id": "c22",
+"name": "알라딘 만권당TV",
+"url": "https://www.youtube.com/@%EC%95%8C%EB%9D%BC%EB%94%98%EB%A7%8C%EA%B6%8C%EB%8B%B9TV",
+"platform": "유튜브",
+"field": "책·글쓰기",
+"topics": [
+"저자",
+"신간"
+],
+"about": "알라딘 서점이 운영하는 책 채널.",
+"subs": "17.4만",
+"recruit": "소개란에 출연·협업 문의 안내"
+},
+{
+"id": "c23",
+"name": "흐니언니 북토크",
+"url": "https://www.youtube.com/@heuni-",
+"platform": "유튜브",
+"field": "책·글쓰기",
+"topics": [
+"북토크",
+"성장"
+],
+"about": "책으로 함께 성장하는 북토크 채널.",
+"subs": "1.54천",
+"recruit": ""
+},
+{
+"id": "c24",
+"name": "폴인 fol:in",
+"url": "https://www.youtube.com/@folin_co",
+"platform": "유튜브",
+"field": "커리어·직장",
+"topics": [
+"일하는 사람",
+"인사이트"
+],
+"about": "일하는 사람을 위한 인사이트 채널.",
+"subs": "3.27만",
+"recruit": ""
+},
+{
+"id": "c25",
+"name": "채널 벤처스퀘어",
+"url": "https://www.youtube.com/@VentureSquare",
+"platform": "유튜브",
+"field": "창업·경영",
+"topics": [
+"스타트업",
+"창업가 인터뷰"
+],
+"about": "스타트업 미디어 벤처스퀘어의 영상 채널.",
+"subs": "2.53천",
+"recruit": ""
+},
+{
+"id": "c26",
+"name": "프로젝트 만나다",
+"url": "https://www.youtube.com/@%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%EB%A7%8C%EB%82%98%EB%8B%A4",
+"platform": "유튜브",
+"field": "창업·경영",
+"topics": [
+"기술 창업",
+"창업 생태계"
+],
+"about": "기술 창업에 대해 다양한 사람을 만나 묻는 프로젝트.",
+"subs": "250",
+"recruit": ""
+},
+{
+"id": "c27",
+"name": "스튜디오1102",
+"url": "https://www.youtube.com/@%EC%8A%A4%ED%8A%9C%EB%94%94%EC%98%A41102",
+"platform": "유튜브",
+"field": "육아·가족",
+"topics": [
+"엄마의 일",
+"경력"
+],
+"about": "엄마의 일을 만드는 방법을 고민하는 채널.",
+"subs": "211",
+"recruit": ""
+},
+{
+"id": "c28",
+"name": "아웃캐스트",
+"url": "https://www.youtube.com/@outcastkorea",
+"platform": "유튜브",
+"field": "사회·환경",
+"topics": [
+"세계인",
+"대화"
+],
+"about": "전 세계 사람들과 진짜 대화를 나누는 채널.",
+"subs": "4.68만",
+"recruit": "소개란에 출연 문의 안내"
+},
+{
+"id": "c29",
+"name": "린터뷰",
+"url": "https://www.youtube.com/@%EB%A6%B0interview",
+"platform": "유튜브",
+"field": "기타",
+"topics": [
+"고민 상담",
+"인생"
+],
+"about": "고민을 대화로 풀어가는 인터뷰.",
+"subs": "622",
+"recruit": ""
+},
+{
+"id": "c30",
+"name": "캐나다 인터뷰룸",
+"url": "https://www.youtube.com/@interviewroom",
+"platform": "유튜브",
+"field": "여행·지역",
+"topics": [
+"해외 생활",
+"캐나다"
+],
+"about": "캐나다에서 일하는 사람들의 생활 인터뷰.",
+"subs": "1.78천",
+"recruit": ""
+},
+{
+"id": "c31",
+"name": "개발바닥",
+"url": "https://www.youtube.com/@devbadak",
+"platform": "유튜브",
+"field": "IT·개발",
+"topics": [
+"개발자",
+"스타트업"
+],
+"about": "스타트업 개발자들의 토크쇼.",
+"subs": "4.11만",
+"recruit": ""
+},
+{
+"id": "c32",
+"name": "비로컬",
+"url": "https://www.youtube.com/@BELOCALKR",
+"platform": "유튜브",
+"field": "여행·지역",
+"topics": [
+"로컬 브랜드",
+"지역 창업"
+],
+"about": "전국의 로컬 브랜드 창업자를 소개.",
+"subs": "443",
+"recruit": ""
+},
+{
+"id": "c33",
+"name": "인터뷰잡스",
+"url": "https://www.youtube.com/@interviewjobs",
+"platform": "유튜브",
+"field": "커리어·직장",
+"topics": [
+"직업",
+"JOB 인터뷰"
+],
+"about": "세상의 모든 직업을 인터뷰하는 채널.",
+"subs": "2.82천",
+"recruit": "소개란에 출연 신청 안내"
+},
+{
+"id": "c34",
+"name": "골든 인터뷰",
+"url": "https://www.youtube.com/@%EA%B3%A8%EB%93%A0%EC%9D%B8%ED%84%B0%EB%B7%B0",
+"platform": "유튜브",
+"field": "창업·경영",
+"topics": [
+"부업",
+"창업",
+"재테크"
+],
+"about": "돈 버는 부업·창업 사례를 소개하는 인터뷰.",
+"subs": "8.58천",
+"recruit": "소개란에 출연 신청 안내"
+},
+{
+"id": "c35",
+"name": "돈버는인터뷰",
+"url": "https://www.youtube.com/@dondon_view",
+"platform": "유튜브",
+"field": "창업·경영",
+"topics": [
+"성공 사례",
+"사업"
+],
+"about": "성공을 향해 달리는 사람들의 인터뷰.",
+"subs": "2.1만",
+"recruit": ""
+},
+{
+"id": "c36",
+"name": "벌스 BIRTH",
+"url": "https://www.youtube.com/@birth_vlog",
+"platform": "유튜브",
+"field": "기타",
+"topics": [
+"차터뷰",
+"인생 이야기"
+],
+"about": "차 안에서 나누는 인터뷰(차터뷰).",
+"subs": "2.27천",
+"recruit": "출연 신청 양식 있음"
+},
+{
+"id": "c37",
+"name": "머니인터뷰",
+"url": "https://www.youtube.com/@MONEY-INTERVIEW",
+"platform": "유튜브",
+"field": "창업·경영",
+"topics": [
+"부업",
+"1인 사업"
+],
+"about": "돈 버는 방법의 실제 사례를 인터뷰.",
+"subs": "558",
+"recruit": ""
+}
+]
