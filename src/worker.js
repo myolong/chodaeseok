@@ -19,8 +19,8 @@ const url = (v) => {
 class Bad extends Error {}
 const need = (c, msg) => { if (!c) throw new Bad(msg); };
 
-// 본업(세무)과 섞지 않기 + 연기·예능 캐스팅 제외
-const BLOCK = /세무|회계사|세금|절세|양도세|상속세|증여세|연기자|배우 지망|오디션|예능 출연|캐스팅/;
+// 연기·예능 캐스팅 제외
+const BLOCK = /연기자|배우 지망|오디션|예능 출연|캐스팅/;
 export const FIELDS = ["창업·경영", "책·글쓰기", "강의·교육", "커리어·직장", "마케팅·브랜딩", "IT·개발", "디자인·예술", "건강·운동", "육아·가족", "여행·지역", "투자·재테크", "취미·라이프", "사회·환경", "기타"];
 
 export class Store extends DurableObject {
@@ -75,7 +75,7 @@ export class Store extends DurableObject {
     need(g.name && g.headline, "이름과 한 줄 소개를 적어 주세요.");
     need(g.topics.length >= 1, "이야기할 수 있는 주제를 하나 이상 적어 주세요.");
     need(g.contact, "출연 제안을 수락했을 때 채널에 알려 줄 연락처를 적어 주세요.");
-    need(!BLOCK.test([g.headline, g.bio, ...g.topics].join(" ")), "초대석은 세무·회계 분야와 연기·예능 캐스팅은 받지 않아요.");
+    need(!BLOCK.test([g.headline, g.bio, ...g.topics].join(" ")), "초대석은 연기·예능 캐스팅은 받지 않아요.");
     return g;
   }
   addGuest(b) {
@@ -94,7 +94,7 @@ export class Store extends DurableObject {
     };
     need(c.name && c.url, "채널 이름과 주소(https://로 시작)를 적어 주세요.");
     need(c.contact, "게스트가 수락했을 때 알려 줄 연락처를 적어 주세요.");
-    need(!BLOCK.test([c.about, ...c.topics].join(" ")), "초대석은 연기·예능 캐스팅과 세무·회계 분야는 받지 않아요.");
+    need(!BLOCK.test([c.about, ...c.topics].join(" ")), "초대석은 연기·예능 캐스팅은 받지 않아요.");
     return c;
   }
   addChannel(b) {

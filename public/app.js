@@ -282,7 +282,7 @@ const channelFormHTML = (c = {}) => `
 const readChannel = () => ({ name: v("f-name"), url: v("f-url"), platform: v("f-platform"), field: v("f-field"), topics: v("f-topics").split(/[,，]/).map((s) => s.trim()).filter(Boolean), subs: v("f-subs"), about: v("f-about"), contact: v("f-contact") });
 const v = (id) => (document.getElementById(id)?.value || "").trim();
 
-const agreeHTML = `<label class="check"><input type="checkbox" id="f-agree"><span><a href="#/about" target="_blank">이용 안내</a>와 <a href="#/privacy" target="_blank">개인정보 처리방침</a>을 읽었고 동의합니다. 연기·예능 캐스팅과 세무·회계 분야는 받지 않고, 출연 조건은 당사자끼리 정한다는 점을 확인했어요.</span></label>
+const agreeHTML = `<label class="check"><input type="checkbox" id="f-agree"><span><a href="#/about" target="_blank">이용 안내</a>와 <a href="#/privacy" target="_blank">개인정보 처리방침</a>을 읽었고 동의합니다. 연기·예능 캐스팅은 받지 않고, 출연 조건은 당사자끼리 정한다는 점을 확인했어요.</span></label>
   <input class="hp" type="text" id="f-website" tabindex="-1" autocomplete="off" aria-hidden="true">`;
 
 function joinGuest() {
@@ -421,9 +421,7 @@ function aboutPage() {
   <p>초대석은 연결만 하고 수수료를 받지 않습니다. 출연료 등 출연 조건은 채널과 게스트가 직접 정하며, 초대석은 관여하거나 책임지지 않습니다.</p>
   <p>돈을 받고 제품·서비스를 알리는 출연(유료 광고)이라면 영상에 &#39;유료 광고 포함&#39;을 표시해야 합니다.</p>
   <h2>연결하지 않는 것</h2>
-  <ul><li><b>연기·예능 출연자 캐스팅.</b> 배우, 모델, 예능 출연자를 모집하는 용도로 쓸 수 없습니다.</li>
-  <li><b>세무·회계 분야 게스트.</b> 시험판에서는 받지 않습니다.</li>
-  <li>광고·홍보만을 위한 프로필, 다른 사람을 사칭한 프로필.</li></ul>
+  <ul><li><b>연기·예능 출연자 캐스팅.</b> 배우, 모델, 예능 출연자를 모집하는 용도로 쓸 수 없습니다.</li>  <li>광고·홍보만을 위한 프로필, 다른 사람을 사칭한 프로필.</li></ul>
   <h2>채널 지도에 대해</h2>
   <p>채널 지도는 유튜브에 공개된 채널 이름, 주소, 소개, 구독자 수로 정리했습니다. 채널 운영자의 이메일 같은 연락처는 모으지 않았고, 초대석이 채널에 광고 메일이나 섭외 메일을 보내지 않습니다. 운영자가 원하면 채널 화면의 "목록에서 빼 주세요"로 바로 뺄 수 있습니다.</p>
   <h2>게스트가 지켜 주실 것</h2>
