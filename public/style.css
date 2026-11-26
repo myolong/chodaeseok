@@ -159,3 +159,10 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--ink)}
   .logo{font-size:17px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* 첫 화면: 채널 지도 바로 가기 */
+.maplink{display:flex;align-items:center;gap:12px;margin-top:18px;padding:14px 16px;border:1px solid var(--line);background:var(--paper);border-radius:12px;text-decoration:none;font-size:14px;line-height:1.5}
+.maplink:hover{border-color:var(--ink)}
+.maplink>span:nth-child(2){flex:1}
+.maplink b{color:var(--onair)}
+.maplink .lamp{flex:none}

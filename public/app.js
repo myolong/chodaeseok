@@ -89,6 +89,7 @@ async function home() {
       <h1>인터뷰할 사람이 필요한 채널과<br><em>이야기할 사람</em>을 잇습니다</h1>
       <p class="lede">책을 낸 작가, 회사를 꾸린 대표, 강의하는 강사가 프로필을 올리면 인터뷰형 유튜브·팟캐스트 채널이 주제로 찾아 출연을 제안합니다.</p>
       <div class="row"><a class="btn red" href="#/join/guest">게스트로 등록하기</a><a class="btn line" href="#/join/channel">채널로 가입하기</a></div>
+      <a class="maplink" href="#/channels"><span class="lamp" aria-hidden="true"></span><span>지금 출연 신청 받는 채널 <b id="h-recruit">…</b>곳 · 전체 채널 지도 <b id="h-total">…</b>곳 보기</span><span aria-hidden="true">→</span></a>
     </div>
     <div class="cuecard" aria-label="출연이 성사되는 순서">
       <div class="h"><span>CUE SHEET</span><b>● REC</b></div>
@@ -100,7 +101,7 @@ async function home() {
       </ol>
     </div>
   </section>
-  <section class="sec" id="h-guests"><div class="sec-h"><h2>최근 등록한 게스트</h2><a class="small" href="#/guests">모두 보기</a></div><div class="grid" id="hg"><div class="empty" style="grid-column:1/-1">불러오는 중…</div></div></section>
+  <section class="sec" id="h-guests" hidden><div class="sec-h"><h2>최근 등록한 게스트</h2><a class="small" href="#/guests">모두 보기</a></div><div class="grid" id="hg"><div class="empty" style="grid-column:1/-1">불러오는 중…</div></div></section>
   <section class="sec"><div class="sec-h"><h2>게스트를 받는 인터뷰 채널</h2><a class="small" href="#/channels">채널 지도 전체 보기</a></div><div class="list" id="hc"></div>
     <p class="small muted">채널 목록은 유튜브에 공개된 채널 정보로 정리했어요. 채널 운영자라면 직접 가입하거나 목록에서 빼 달라고 요청할 수 있어요.</p></section>
   <section class="sec" id="hs" hidden><div class="sec-h"><h2>초대석으로 성사된 출연</h2></div><div class="list" id="hsl"></div></section>
@@ -110,7 +111,10 @@ async function home() {
     <div class="box"><span class="k">약속</span><h3>수수료 없이 연결만</h3><p class="small muted">초대석은 연결만 하고 수수료를 받지 않아요. 출연 조건은 채널과 게스트가 직접 정해요. <a href="#/about">이용 안내</a></p></div>
   </section>`;
   const [gs, cs, ss] = await Promise.all([load("/api/guests"), load("/api/channels"), load("/api/shows").catch(() => [])]);
-  document.getElementById("hg").innerHTML = gs.length ? gs.slice(0, 6).map(guestCard).join("") : `<div class="empty" style="grid-column:1/-1">아직 등록한 게스트가 없어요. <a href="#/join/guest">첫 게스트가 되어 주세요.</a></div>`;
+  // 게스트가 아직 없으면 빈 칸을 보여 주지 않고 섹션을 숨김
+  if (gs.length) { document.getElementById("h-guests").hidden = false; document.getElementById("hg").innerHTML = gs.slice(0, 6).map(guestCard).join(""); }
+  document.getElementById("h-recruit").textContent = cs.filter((c) => c.registered || c.recruit).length;
+  document.getElementById("h-total").textContent = cs.length;
   const pick = cs.filter((c) => c.registered || c.recruit).slice(0, 6);
   document.getElementById("hc").innerHTML = (pick.length ? pick : cs.slice(0, 6)).map(chRow).join("");
   if (ss.length) {
@@ -198,13 +202,18 @@ async function report(type, id) {
 // ---------- 채널 ----------
 async function channelList() {
   const st = JSON.parse(store.get("cds.cf") || "{}");
-  $app.innerHTML = `<div class="sec-h"><div><h1 style="font-size:26px">게스트 받는 채널 지도</h1><p class="small muted">인터뷰형 채널을 공개 정보로 모았어요. 구독자 수는 2026년 11월 26일에 확인한 숫자예요.</p></div><a class="btn sm line" href="#/join/channel">채널로 가입</a></div>
+  $app.innerHTML = `<div class="sec-h"><div><h1 style="font-size:26px">게스트 받는 채널 지도 <span class="muted" id="cn" style="font-weight:500"></span></h1><p class="small muted">인터뷰형 채널을 공개 정보로 모았어요. 구독자 수는 2026년 11월 26일에 확인한 숫자예요.</p></div><a class="btn sm line" href="#/join/channel">채널로 가입</a></div>
   <div class="filters"><input type="search" id="cq" placeholder="채널 이름·주제로 찾기" value="${esc(st.q || "")}" aria-label="검색어">
   <select id="cf" aria-label="분야">${opts(FIELDS, st.f, "모든 분야")}</select>
   <select id="cr" aria-label="보기"><option value="">모든 채널</option><option value="recruit"${st.r === "recruit" ? " selected" : ""}>출연 신청 안내가 있는 채널</option><option value="reg"${st.r === "reg" ? " selected" : ""}>초대석 가입 채널만</option></select></div>
   <div class="list" id="cl"><div class="empty">불러오는 중…</div></div>
   <p class="notice">초대석에 가입한 채널에만 사이트 안에서 출연 신청을 보낼 수 있어요. 가입하지 않은 채널은 각 채널이 공개한 창구로 직접 문의해 주세요. 초대석은 채널에 광고 메일을 보내지 않습니다.</p>`;
   const all = await load("/api/channels", true);
+  document.getElementById("cn").textContent = all.length + "곳";
+  // 가입 채널 → 출연 신청 안내 있는 채널 → 나머지 순으로, 같은 묶음 안에서는 구독자 많은 순
+  const subsN = (s) => { const m = String(s || "").match(/([\d.]+)\s*(만|천)?/); return m ? parseFloat(m[1]) * (m[2] === "만" ? 1e4 : m[2] === "천" ? 1e3 : 1) : 0; };
+  const rank = (c) => (c.registered ? 2 : c.recruit ? 1 : 0);
+  all.sort((a, b) => rank(b) - rank(a) || subsN(b.subs) - subsN(a.subs));
   const cq = document.getElementById("cq"), cf = document.getElementById("cf"), cr = document.getElementById("cr");
   const draw = () => {
     const q = cq.value.trim().toLowerCase(), f = cf.value, r = cr.value;
