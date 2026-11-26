@@ -50,6 +50,8 @@ const routes = [
   [/^me\/([a-z0-9]{20,})$/, (k) => { store.set("cds.key", k); store.set("cds.kind", null); location.replace("#/me"); }],
   [/^me$/, mePage],
   [/^remove\/([a-z0-9-]+)$/, removePage],
+  [/^claim\/([a-z0-9]{20,})$/, claimPage],
+  [/^verify\/([a-z0-9]+)\/([a-z0-9]{20,})$/, verifyPage],
   [/^about$/, aboutPage],
   [/^privacy$/, privacyPage],
 ];
@@ -207,7 +209,7 @@ async function channelList() {
   <select id="cf" aria-label="분야">${opts(FIELDS, st.f, "모든 분야")}</select>
   <select id="cr" aria-label="보기"><option value="">모든 채널</option><option value="recruit"${st.r === "recruit" ? " selected" : ""}>출연 신청 안내가 있는 채널</option><option value="reg"${st.r === "reg" ? " selected" : ""}>초대석 가입 채널만</option></select></div>
   <div class="list" id="cl"><div class="empty">불러오는 중…</div></div>
-  <p class="notice">초대석에 가입한 채널에만 사이트 안에서 출연 신청을 보낼 수 있어요. 가입하지 않은 채널은 각 채널이 공개한 창구로 직접 문의해 주세요. 초대석은 채널에 광고 메일을 보내지 않습니다.</p>`;
+  <p class="notice">초대석에 가입한 채널에만 사이트 안에서 출연 신청을 보낼 수 있어요. 가입하지 않은 채널은 각 채널이 공개한 창구로 직접 문의해 주세요. 초대석은 채널이 공개한 출연·문의 창구로만, 채널 지도에 소개했다는 안내를 한 번씩 보낼 수 있어요.</p>`;
   const all = await load("/api/channels", true);
   document.getElementById("cn").textContent = all.length + "곳";
   // 가입 채널 → 출연 신청 안내 있는 채널 → 나머지 순으로, 같은 묶음 안에서는 구독자 많은 순
@@ -243,7 +245,8 @@ async function channelPage(id) {
           : `<h2 style="font-size:16px">이 채널에 나가고 싶다면</h2><p class="small muted">게스트로 등록하면 출연 신청을 보낼 수 있어요.</p><a class="btn red" href="#/join/guest">게스트로 등록하기</a>`
         : `<h2 style="font-size:16px">아직 초대석에 가입하지 않은 채널</h2><p class="small muted">출연을 원하면 채널 소개란에 공개된 창구로 직접 문의해 주세요.</p>
            <hr style="border:0;border-top:1px solid var(--line);width:100%"><p class="small"><b>이 채널 운영자이신가요?</b></p>
-           <a class="btn sm" href="#/join/channel/${c.id}">가입하고 게스트 받기</a><a class="small muted" href="#/remove/${c.id}">목록에서 빼 주세요</a>`}
+           <a class="btn sm" href="#/join/channel/${c.id}">가입하고 게스트 받기</a><a class="small muted" href="#/remove/${c.id}">목록에서 빼 주세요</a>
+           <p class="small muted">가입과 목록 빼기는 채널 운영자 확인을 거친 뒤 반영돼요.</p>`}
       </div>
       ${c.registered ? '<button class="linkbtn" id="rep">이 채널 신고하기</button>' : ""}
     </aside>
@@ -254,13 +257,76 @@ async function channelPage(id) {
 
 async function removePage(id) {
   const c = await load("/api/channels/" + id, true);
-  $app.innerHTML = `<div class="doc"><h1>목록에서 빼기 요청</h1><p><b>${esc(c.name)}</b> 채널을 초대석 채널 지도에서 뺍니다. 요청하는 즉시 목록에서 사라지고, 다시 올리지 않아요.</p>
-  <form id="rmf"><div class="field"><label for="rmr">이유 (선택)</label><input type="text" id="rmr" maxlength="200"></div><div class="row"><button class="btn" type="submit">목록에서 빼기</button><a class="btn line" href="#/channel/${c.id}">취소</a></div></form></div>`;
+  $app.innerHTML = `<div class="doc"><h1>목록에서 빼기 요청</h1><p><b>${esc(c.name)}</b> 채널을 초대석 채널 지도에서 뺍니다. 다른 사람이 대신 지우지 못하도록, 채널 운영자임을 간단히 확인한 뒤 바로 목록에서 빼고 다시 올리지 않아요.</p>
+  <form id="rmf"><div class="field"><label for="rmr">이유 (선택)</label><input type="text" id="rmr" maxlength="200"></div><div class="row"><button class="btn" type="submit">다음: 운영자 확인</button><a class="btn line" href="#/channel/${c.id}">취소</a></div></form></div>`;
   document.getElementById("rmf").onsubmit = async (e) => {
     e.preventDefault();
-    try { await api("/api/remove-request", { method: "POST", body: { id: c.id, reason: document.getElementById("rmr").value } }); clearCache(); $app.innerHTML = `<div class="empty">목록에서 뺐어요. 불편을 드려 죄송합니다.<br><br><a class="btn line sm" href="#/channels">채널 지도로</a></div>`; }
+    try { const r = await api("/api/remove-request", { method: "POST", body: { id: c.id, reason: document.getElementById("rmr").value } }); location.hash = "#/claim/" + r.token; }
     catch (x) { toast(x.message); }
   };
+}
+
+// ---------- 채널 운영자 확인 ----------
+// 가입·목록 빼기 요청은 운영자 확인(소개란 코드 또는 공개 메일 인증 링크)을 마쳐야 반영됨
+async function claimPage(token) {
+  const d = await api("/api/me", { key: token });
+  if (d.kind !== "claim") { location.replace("#/me/" + token); return; }
+  claimView(token, d.claim, false);
+}
+function claimView(token, c, isMine) {
+  const join = c.kind === "join", yt = /youtube\.com|youtu\.be/i.test(c.url);
+  const link = `${location.origin}/#/${isMine ? "me" : "claim"}/${token}`;
+  const mailState = c.status === "mail" ? `<p class="notice">채널 소개란에 공개된 <b>${esc(c.vmail)}</b> 주소로 운영자가 인증 링크를 보내 드려요(보통 하루 안). 메일의 링크를 누르면 ${join ? "가입이 끝나고 그 화면에서 관리 링크를 드려요" : "바로 목록에서 빠져요"}.</p>`
+    : c.status === "mail-manual" ? `<p class="notice">채널 소개란에서 메일 주소를 자동으로 찾지 못했어요. 운영자가 채널에 공개된 연락처를 직접 확인해 연락드릴게요. 더 빠르게 하려면 위의 소개란 코드 확인을 이용해 주세요.</p>` : "";
+  $app.innerHTML = `<div class="doc" style="max-width:720px"><p class="eyebrow">${join ? "채널 가입" : "목록에서 빼기"} · 운영자 확인</p>
+  <h1>${esc(c.name)} 채널 운영자이신지 확인할게요</h1>
+  <p class="muted">다른 사람이 남의 채널로 가입하거나 목록에서 지우지 못하도록, 채널을 실제로 운영하는 분인지 확인한 뒤에 ${join ? "가입이 완료돼요. 확인 전에는 채널 지도에 바뀌는 것이 없고, 출연 제안도 보낼 수 없어요" : "목록에서 빼요"}.</p>
+  <div class="keybox"><code>${esc(link)}</code><button class="btn sm" id="clcopy">이 화면 주소 복사</button></div>
+  <p class="small muted">확인을 나중에 마치려면 이 주소를 저장해 두세요.</p>
+  ${yt ? `<div class="box sec"><h2 style="font-size:16px">방법 1. 채널 소개란에 코드 넣기 (바로 확인)</h2>
+    <ol class="small"><li>유튜브 스튜디오 → 맞춤설정 → 기본 정보 → <b>설명</b>에 아래 코드를 아무 곳에나 넣고 게시해 주세요.</li><li>몇 분 뒤 아래 <b>확인하기</b>를 눌러 주세요. 확인이 끝나면 코드는 지워도 돼요.</li></ol>
+    <div class="keybox"><code id="clcode">${esc(c.code)}</code><button class="btn sm" id="ccopy">코드 복사</button></div>
+    <p class="err" id="cle" hidden></p><div class="row"><button class="btn red" id="clcheck">확인하기</button></div></div>` : ""}
+  <div class="box sec"><h2 style="font-size:16px">방법 ${yt ? 2 : 1}. 채널에 공개된 메일로 인증 링크 받기</h2>
+    <p class="small muted">채널 소개란에 공개해 둔 출연·문의 메일 주소로만 인증 링크를 보내요. 다른 주소로는 보내지 않아요.</p>
+    ${mailState || `<div class="row"><button class="btn line" id="clmail">공개 메일로 인증 링크 받기</button></div>`}</div>
+  <button class="linkbtn" id="clcancel">요청 취소하기</button></div>`;
+  document.getElementById("clcopy").onclick = (e) => copy(link, e.target);
+  const done = (r) => {
+    clearCache();
+    if (r.kind === "join") { store.set("cds.key", r.token); store.set("cds.kind", "channel"); store.set("cds.new", "1"); location.hash = "#/me"; location.reload(); }
+    else { if (isMine) { store.set("cds.key", null); store.set("cds.kind", null); } $app.innerHTML = `<div class="empty">확인했어요. <b>${esc(r.name)}</b> 채널을 목록에서 뺐어요. 불편을 드려 죄송합니다.<br><br><a class="btn line sm" href="#/channels">채널 지도로</a></div>`; }
+  };
+  if (yt) {
+    document.getElementById("ccopy").onclick = (e) => copy(c.code, e.target);
+    document.getElementById("clcheck").onclick = async (e) => {
+      const b = e.target, err = document.getElementById("cle"); b.disabled = true; err.hidden = true; b.textContent = "확인하는 중…";
+      try { done(await api("/api/claim/check", { method: "POST", key: token, body: {} })); }
+      catch (x) { err.textContent = x.message; err.hidden = false; b.disabled = false; b.textContent = "확인하기"; }
+    };
+  }
+  const mb = document.getElementById("clmail");
+  if (mb) mb.onclick = async () => {
+    mb.disabled = true;
+    try { await api("/api/claim/mail", { method: "POST", key: token, body: {} }); const d = await api("/api/me", { key: token }); claimView(token, d.claim, isMine); }
+    catch (x) { toast(x.message); mb.disabled = false; }
+  };
+  document.getElementById("clcancel").onclick = async () => {
+    if (!confirm("요청을 취소할까요?")) return;
+    try { await api("/api/claim/cancel", { method: "POST", key: token, body: {} }); if (isMine) { store.set("cds.key", null); store.set("cds.kind", null); } location.hash = "#/channels"; }
+    catch (x) { toast(x.message); }
+  };
+}
+async function verifyPage(id, secret) {
+  $app.innerHTML = `<div class="empty">확인하는 중…</div>`;
+  const r = await api(`/api/verify?c=${encodeURIComponent(id)}&s=${encodeURIComponent(secret)}`);
+  clearCache();
+  if (r.kind === "join") {
+    store.set("cds.key", r.token); store.set("cds.kind", "channel"); store.set("cds.new", "1");
+    location.replace("#/me");
+  } else {
+    $app.innerHTML = `<div class="empty">확인했어요. <b>${esc(r.name)}</b> 채널을 목록에서 뺐어요. 불편을 드려 죄송합니다.<br><br><a class="btn line sm" href="#/channels">채널 지도로</a></div>`;
+  }
 }
 
 // ---------- 등록 양식 ----------
@@ -302,11 +368,11 @@ function joinGuest() {
   bindJoin("/api/guests", readGuest);
 }
 async function joinChannel(fromId) {
-  if (myKey() && myKind() === "channel") { location.replace("#/me"); return; }
+  if (myKey() && (myKind() === "channel" || myKind() === "claim")) { location.replace("#/me"); return; }
   let pre = {};
   if (fromId) { try { pre = await load("/api/channels/" + fromId); } catch {} }
   $app.innerHTML = `<div class="doc" style="max-width:720px"><p class="eyebrow">채널 가입 · 계속 무료</p><h1>어떤 게스트를 찾고 있나요?</h1>
-  <p class="muted">가입하면 게스트에게 출연 제안을 보내고, 게스트의 출연 신청을 받을 수 있어요.${fromId ? " 채널 지도에 있던 정보를 미리 채워 두었어요." : ""}</p></div>
+  <p class="muted">가입하면 게스트에게 출연 제안을 보내고, 게스트의 출연 신청을 받을 수 있어요. 남의 채널로 가입하는 일을 막기 위해, 양식을 낸 뒤 채널 운영자 확인(채널 소개란에 코드 넣기 또는 채널에 공개된 메일로 인증)을 거쳐요.${fromId ? " 채널 지도에 있던 정보를 미리 채워 두었어요." : ""}</p></div>
   <form id="jf" class="box">${channelFormHTML(pre)}${agreeHTML}<p class="err" id="je" hidden></p><button class="btn red" type="submit">가입하기</button></form>`;
   bindJoin("/api/channels", readChannel);
 }
@@ -340,6 +406,7 @@ async function mePage() {
   try { d = await api("/api/me", { key }); }
   catch (x) { store.set("cds.key", null); store.set("cds.kind", null); throw x; }
   store.set("cds.kind", d.kind);
+  if (d.kind === "claim") { claimView(key, d.claim, true); return; }
   const p = d.profile, isG = d.kind === "guest";
   const link = `${location.origin}/#/me/${key}`;
   const fresh = store.get("cds.new"); store.set("cds.new", null);
@@ -432,7 +499,7 @@ function aboutPage() {
   <h2>연결하지 않는 것</h2>
   <ul><li><b>연기·예능 출연자 캐스팅.</b> 배우, 모델, 예능 출연자를 모집하는 용도로 쓸 수 없습니다.</li>  <li>광고·홍보만을 위한 프로필, 다른 사람을 사칭한 프로필.</li></ul>
   <h2>채널 지도에 대해</h2>
-  <p>채널 지도는 유튜브에 공개된 채널 이름, 주소, 소개, 구독자 수로 정리했습니다. 채널 운영자의 이메일 같은 연락처는 모으지 않았고, 초대석이 채널에 광고 메일이나 섭외 메일을 보내지 않습니다. 운영자가 원하면 채널 화면의 "목록에서 빼 주세요"로 바로 뺄 수 있습니다.</p>
+  <p>채널 지도는 유튜브에 공개된 채널 이름, 주소, 소개, 구독자 수로 정리했습니다. 채널 운영자의 연락처를 따로 모으지 않습니다. 초대석은 채널이 소개란에 공개한 출연·문의 창구로만, 채널 지도에 소개했다는 안내를 한 번씩 보낼 수 있습니다. 운영자가 원하면 채널 화면의 "목록에서 빼 주세요"로 뺄 수 있고, 다른 사람이 대신 지우지 못하도록 채널 운영자 확인(소개란 코드 또는 공개 메일 인증)을 거칩니다. 채널 가입도 같은 확인을 마친 뒤 반영됩니다.</p>
   <h2>게스트가 지켜 주실 것</h2>
   <ul><li>출연 조건은 채널과 직접, 미리 분명하게 정합니다. 대가를 받고 제품·서비스를 알리는 출연이라면 영상에 &#39;유료 광고 포함&#39; 표시가 되도록 채널과 상의합니다.</li><li>사실과 다른 경력이나 이력을 적지 않습니다.</li></ul>
   <h2>신고와 숨김</h2>
@@ -452,6 +519,7 @@ function privacyPage() {
   <table><tr><th>누구</th><th>모으는 정보</th><th>쓰는 곳</th></tr>
   <tr><td>게스트</td><td>이름(활동명), 한 줄 소개, 주제, 분야, 지역, 자기소개, 링크, 연락처</td><td>프로필 공개(연락처 제외), 출연 제안 전달, 수락한 채널에 연락처 전달</td></tr>
   <tr><td>채널</td><td>채널 이름·주소·소개, 연락처</td><td>채널 정보 공개(연락처 제외), 수락한 게스트에게 연락처 전달</td></tr>
+  <tr><td>채널 확인 요청</td><td>요청한 채널, 확인용 코드, 채널 소개란에 공개된 메일 주소(메일 인증을 고른 경우)</td><td>채널 운영자 확인, 인증 링크 발송</td></tr>
   <tr><td>공통</td><td>주고받은 제안 내용, 신고 내용</td><td>제안 전달, 부정 이용 확인</td></tr></table>
   <p>연락처는 공개 화면에 나오지 않고, 본인이 수락한 제안의 상대에게만 보입니다. IP 주소나 기기 정보를 따로 저장하지 않습니다.</p>
   <h2>보관 기간</h2>
@@ -459,7 +527,7 @@ function privacyPage() {
   <h2>제3자 제공과 맡기는 곳</h2>
   <p>수락한 상대에게 연락처를 보여 주는 것 외에는 다른 곳에 제공하지 않습니다. 정보는 Cloudflare(미국)의 서버에 저장됩니다.</p>
   <h2>공개된 채널 정보</h2>
-  <p>채널 지도의 정보는 유튜브에 공개된 채널 정보입니다. 채널 운영자의 개인 연락처는 모으지 않습니다. 목록에서 빼기를 요청하면 바로 숨깁니다.</p>
+  <p>채널 지도의 정보는 유튜브에 공개된 채널 정보입니다. 채널 운영자의 개인 연락처는 모으지 않습니다. 목록에서 빼기를 요청하면 채널 운영자 확인을 거쳐 숨깁니다. 확인용으로 받은 공개 메일 주소는 확인이 끝나면 더 쓰지 않습니다.</p>
   <h2>권리</h2>
   <p>내 관리 화면에서 언제든 정보를 보고, 고치고, 지울 수 있습니다. 관리 링크를 잃어버려 지울 수 없다면 운영자 이메일 <b>chodaeseok.kr@gmail.com</b> 으로 알려 주세요.</p>
   <p class="small muted">베타 기간 초안입니다. 유료 기능을 시작하기 전에 전문가 검토를 거쳐 다시 고칩니다.</p>
