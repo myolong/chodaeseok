@@ -267,7 +267,7 @@ const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<
 
 const statsPage = (s) => `<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>초대석 숫자</title>
 <style>body{margin:0 auto;background:#F6F5F1;color:#25282C;font-family:system-ui,sans-serif;padding:20px 16px;max-width:640px}h1{font-size:20px}h2{font-size:15px;margin-top:24px}.g{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.c{background:#fff;border:1px solid #E1DFD8;border-radius:8px;padding:12px}.c b{display:block;font-size:26px}.c span{font-size:12px;color:#666}.c i{font-style:normal;font-size:12px;color:#B5432F}table{width:100%;border-collapse:collapse;background:#fff;font-size:13px}td,th{padding:6px 8px;border-bottom:1px solid #eee;text-align:right}td:first-child,th:first-child{text-align:left}p{font-size:12px;color:#666;line-height:1.6}</style></head><body>
-<h1>초대석 시험판 숫자</h1>
+<h1>초대석 베타 숫자</h1>
 <div class="g"><div class="c"><b>${s.guests}</b><span>등록 게스트</span><br><i>8주 목표 100 · 4주 점검 40</i></div><div class="c"><b>${s.channels}</b><span>가입 채널 (목록 ${s.listed}곳 중)</span><br><i>8주 목표 20 · 4주 점검 8</i></div><div class="c"><b>${s.shows}</b><span>출연 후기</span><br><i>8주 목표 5</i></div></div>
 <p>출연 제안 ${s.offers}건 중 수락 ${s.accepted}건 (4주 점검선: 제안 10건). 신고 3번으로 숨겨진 게스트 ${s.hiddenGuests}명.</p>
 <h2>최근 14일</h2><table><tr><th>날짜</th><th>게스트</th><th>채널</th><th>제안</th><th>출연</th></tr>${s.days.map((r) => `<tr><td>${r.d.slice(5).replace("-", "/")}</td><td>${r.guest}</td><td>${r.channel}</td><td>${r.offer}</td><td>${r.show}</td></tr>`).join("")}</table>
