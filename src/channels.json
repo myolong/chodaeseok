@@ -519,5 +519,380 @@
 "about": "돈 버는 방법의 실제 사례를 인터뷰.",
 "subs": "558",
 "recruit": ""
+},
+{
+"id": "c38",
+"name": "일터뷰",
+"url": "https://www.youtube.com/@---_---",
+"platform": "유튜브",
+"field": "커리어·직장",
+"topics": [
+"일터 이야기",
+"직업인",
+"자영업"
+],
+"about": "세상의 모든 일터를 찾아가 일하는 사람의 이야기를 듣는 채널.",
+"subs": "49.6만",
+"recruit": "소개란에 출연 문의 안내"
+},
+{
+"id": "c39",
+"name": "사장님입니다",
+"url": "https://www.youtube.com/@sazangneem",
+"platform": "유튜브",
+"field": "창업·경영",
+"topics": [
+"사장님",
+"장사",
+"자영업"
+],
+"about": "시장과 골목에서 일하는 사장님들을 인터뷰하는 채널.",
+"subs": "18.1만",
+"recruit": "소개란에 출연 문의 안내"
+},
+{
+"id": "c40",
+"name": "그사람이야기 - 그사이TV",
+"url": "https://www.youtube.com/@%EA%B7%B8%EC%82%AC%EC%9D%B4tv",
+"platform": "유튜브",
+"field": "창업·경영",
+"topics": [
+"사업가",
+"자영업자",
+"전문가"
+],
+"about": "사업가·자영업자·전문가를 직접 찾아가 결정의 순간을 묻는 인터뷰 채널.",
+"subs": "7.36만",
+"recruit": "소개란에 출연 문의 안내"
+},
+{
+"id": "c41",
+"name": "작심 팟캐스트",
+"url": "https://www.youtube.com/@zaksimpodcast",
+"platform": "유튜브",
+"field": "창업·경영",
+"topics": [
+"대표 인터뷰",
+"창업",
+"진로"
+],
+"about": "진로·취업·창업에 관한 이야기를 대표·창업가와 나누는 영상 팟캐스트.",
+"subs": "8.12만",
+"recruit": ""
+},
+{
+"id": "c42",
+"name": "주언규 joo earn gyu",
+"url": "https://www.youtube.com/@%EC%A3%BC%EC%96%B8%EA%B7%9CPD",
+"platform": "유튜브",
+"field": "창업·경영",
+"topics": [
+"사업",
+"자영업",
+"대표 인터뷰"
+],
+"about": "사업가·대표·크리에이터를 초대해 돈 버는 과정과 현실을 이야기하는 채널.",
+"subs": "69.8만",
+"recruit": "소개란에 출연 신청 안내"
+},
+{
+"id": "c43",
+"name": "너머니-너의 돈버는 이야기",
+"url": "https://www.youtube.com/@youmoney43",
+"platform": "유튜브",
+"field": "창업·경영",
+"topics": [
+"장사",
+"직업",
+"인생 이야기"
+],
+"about": "다양한 직업인의 돈 버는 삶을 인터뷰로 담는 채널. 누구나 출연 신청 가능하다고 안내.",
+"subs": "2.15만",
+"recruit": "소개란에 출연 신청 안내"
+},
+{
+"id": "c44",
+"name": "부튜브",
+"url": "https://www.youtube.com/@%EB%B6%80-%ED%8A%9C%EB%B8%8C",
+"platform": "유튜브",
+"field": "창업·경영",
+"topics": [
+"부업",
+"N잡",
+"경험담"
+],
+"about": "부업으로 수익을 내는 사람들을 직접 만나 인터뷰하는 채널.",
+"subs": "1.12만",
+"recruit": "소개란에 출연 신청 안내"
+},
+{
+"id": "c45",
+"name": "주노정의 N잡연구소",
+"url": "https://www.youtube.com/@nlab_kr",
+"platform": "유튜브",
+"field": "창업·경영",
+"topics": [
+"N잡",
+"1인 창업",
+"부업"
+],
+"about": "N잡러와 1인 창업가를 초대해 이야기를 나누는 채널(주노정의 N캐스트).",
+"subs": "1.74만",
+"recruit": "소개란에 출연 문의 안내"
+},
+{
+"id": "c46",
+"name": "퇴사설계소",
+"url": "https://www.youtube.com/@%ED%87%B4%EC%82%AC%EC%84%A4%EA%B3%84%EC%86%8C",
+"platform": "유튜브",
+"field": "커리어·직장",
+"topics": [
+"퇴사",
+"직장인",
+"두 번째 일"
+],
+"about": "퇴사를 고민하는 15년 차 직장인이 먼저 퇴사한 사람들의 이야기를 듣는 채널.",
+"subs": "1.29천",
+"recruit": ""
+},
+{
+"id": "c47",
+"name": "열현남아",
+"url": "https://www.youtube.com/@%EC%97%B4%ED%98%84%EB%82%A8%EC%95%84",
+"platform": "유튜브",
+"field": "커리어·직장",
+"topics": [
+"기술자",
+"현장직",
+"블루칼라"
+],
+"about": "스펙보다 기술로 일하는 현장 기술자들을 인터뷰하는 채널.",
+"subs": "11.8만",
+"recruit": "소개란에 출연 문의 안내"
+},
+{
+"id": "c48",
+"name": "샐리 (Selly)",
+"url": "https://www.youtube.com/@marinejobselly",
+"platform": "유튜브",
+"field": "커리어·직장",
+"topics": [
+"해양 직업",
+"마린잡 인터뷰",
+"여성 커리어"
+],
+"about": "해양 분야 직업인을 만나는 '마린잡 인터뷰'를 진행하는 채널. 출연 신청은 구글폼으로 안내.",
+"subs": "1.47만",
+"recruit": "소개란에 출연 신청 안내"
+},
+{
+"id": "c49",
+"name": "성장읽기",
+"url": "https://www.youtube.com/@%EB%B6%81%ED%8A%9C%EB%B2%84",
+"platform": "유튜브",
+"field": "기타",
+"topics": [
+"분야별 전문가",
+"생활 정보",
+"부동산"
+],
+"about": "여러 분야의 오랜 경력 전문가를 인터뷰하는 채널.",
+"subs": "14만",
+"recruit": "소개란에 출연 문의 안내"
+},
+{
+"id": "c50",
+"name": "교육의 민족",
+"url": "https://www.youtube.com/@%EA%B5%90%EC%9C%A1%EC%9D%98%EB%AF%BC%EC%A1%B1",
+"platform": "유튜브",
+"field": "강의·교육",
+"topics": [
+"자녀 교육",
+"교사",
+"학부모"
+],
+"about": "교사·교육 전문가를 인터뷰해 자녀 교육 이야기를 전하는 채널.",
+"subs": "1.99만",
+"recruit": "소개란에 출연 문의 안내"
+},
+{
+"id": "c51",
+"name": "사월이네 북리뷰",
+"url": "https://www.youtube.com/@AprilBook",
+"platform": "유튜브",
+"field": "책·글쓰기",
+"topics": [
+"작가 인터뷰",
+"신간 소개",
+"북토크"
+],
+"about": "문학 리뷰와 신간 소개, 작가 인터뷰를 하는 북튜브 채널.",
+"subs": "3.4만",
+"recruit": ""
+},
+{
+"id": "c52",
+"name": "Afternoon Bookstore 오후의 책방",
+"url": "https://www.youtube.com/@booktube_afternoon",
+"platform": "유튜브",
+"field": "책·글쓰기",
+"topics": [
+"저자 인터뷰",
+"북토크",
+"인문"
+],
+"about": "책 리뷰와 함께 '오후의북토크'로 책을 쓴 작가를 만나는 채널.",
+"subs": "4.69만",
+"recruit": ""
+},
+{
+"id": "c53",
+"name": "월간 데코 Monthly DECO",
+"url": "https://www.youtube.com/@monthlydeco",
+"platform": "유튜브",
+"field": "디자인·예술",
+"topics": [
+"디자이너 인터뷰",
+"인테리어",
+"건축"
+],
+"about": "건축·인테리어 매거진 월간 데코의 디자이너 인터뷰 채널.",
+"subs": "2.61천",
+"recruit": ""
+},
+{
+"id": "c54",
+"name": "헤드헌터 윤재홍의 난JOB한 이야기",
+"url": "https://podcasts.apple.com/kr/podcast/%ED%97%A4%EB%93%9C%ED%97%8C%ED%84%B0-%EC%9C%A4%EC%9E%AC%ED%99%8D%EC%9D%98-%EB%82%9Cjob%ED%95%9C-%EC%9D%B4%EC%95%BC%EA%B8%B0/id953929138",
+"platform": "팟캐스트",
+"field": "커리어·직장",
+"topics": [
+"직업 토크",
+"자격증",
+"직업인"
+],
+"about": "헤드헌터가 여러 직업의 현직자를 초대해 일과 수입, 현실을 묻는 팟캐스트.",
+"subs": "",
+"recruit": ""
+},
+{
+"id": "c55",
+"name": "아이티백 - IT 일하는 동료와 차 한잔",
+"url": "https://podcasts.apple.com/kr/podcast/%EC%95%84%EC%9D%B4%ED%8B%B0%EB%B0%B1-it-%EC%9D%BC%ED%95%98%EB%8A%94-%EB%8F%99%EB%A3%8C%EC%99%80-%EC%B0%A8-%ED%95%9C%EC%9E%94/id1751428340",
+"platform": "팟캐스트",
+"field": "IT·개발",
+"topics": [
+"IT 직무",
+"개발자",
+"동료 인터뷰"
+],
+"about": "IT 업계에서 일하는 사람을 한 명씩 초대해 일과 삶을 나누는 팟캐스트.",
+"subs": "",
+"recruit": ""
+},
+{
+"id": "c56",
+"name": "SHE3volution 쉬볼루션",
+"url": "https://podcasts.apple.com/kr/podcast/she3volution-%EC%89%AC%EB%B3%BC%EB%A3%A8%EC%85%98/id1823591057",
+"platform": "팟캐스트",
+"field": "커리어·직장",
+"topics": [
+"여성 커리어",
+"해외 취업",
+"이민"
+],
+"about": "해외에서 일하는 여성들의 커리어 이야기를 게스트와 나누는 팟캐스트.",
+"subs": "",
+"recruit": ""
+},
+{
+"id": "c57",
+"name": "송인성의 SEO 팟캐스트",
+"url": "https://podcasts.apple.com/kr/podcast/%EC%86%A1%EC%9D%B8%EC%84%B1%EC%9D%98-seo-%ED%8C%9F%EC%BA%90%EC%8A%A4%ED%8A%B8/id6804930361",
+"platform": "팟캐스트",
+"field": "마케팅·브랜딩",
+"topics": [
+"검색 마케팅",
+"블로그",
+"AI 활용"
+],
+"about": "검색·콘텐츠 마케팅을 다루며 대표·강사 게스트를 초대하는 팟캐스트.",
+"subs": "",
+"recruit": ""
+},
+{
+"id": "c58",
+"name": "무소속 생활자",
+"url": "https://podcasts.apple.com/kr/podcast/%EB%AC%B4%EC%86%8C%EC%86%8D-%EC%83%9D%ED%99%9C%EC%9E%90/id1738806607",
+"platform": "팟캐스트",
+"field": "취미·라이프",
+"topics": [
+"프리랜서",
+"독립 생활",
+"게스트 토크"
+],
+"about": "조직 밖에서 일하고 사는 이야기를 게스트와 함께 나누는 팟캐스트.",
+"subs": "",
+"recruit": ""
+},
+{
+"id": "c59",
+"name": "YG와 JYP의 책걸상",
+"url": "https://podcasts.apple.com/kr/podcast/yg%EC%99%80-jyp%EC%9D%98-%EC%B1%85%EA%B1%B8%EC%83%81/id1417008825",
+"platform": "팟캐스트",
+"field": "책·글쓰기",
+"topics": [
+"책 이야기",
+"저자 초대",
+"교양"
+],
+"about": "책을 함께 읽고 저자·전문가 게스트와 이야기하는 장수 팟캐스트(1,000회 넘음).",
+"subs": "",
+"recruit": ""
+},
+{
+"id": "c60",
+"name": "에세이클럽",
+"url": "https://podcasts.apple.com/kr/podcast/%EC%97%90%EC%84%B8%EC%9D%B4%ED%81%B4%EB%9F%BD/id1584544344",
+"platform": "팟캐스트",
+"field": "책·글쓰기",
+"topics": [
+"에세이",
+"글쓰기",
+"게스트 대화"
+],
+"about": "매회 게스트를 초대해 그 사람의 글과 삶을 이야기하는 팟캐스트.",
+"subs": "",
+"recruit": ""
+},
+{
+"id": "c61",
+"name": "부싸안 : 부산에서 살아가는 우리들의 현실 토크",
+"url": "https://podcasts.apple.com/kr/podcast/%EB%B6%80%EC%8B%B8%EC%95%88-%EB%B6%80%EC%82%B0%EC%97%90%EC%84%9C-%EC%82%B4%EC%95%84%EA%B0%80%EB%8A%94-%EC%9A%B0%EB%A6%AC%EB%93%A4%EC%9D%98-%ED%98%84%EC%8B%A4-%ED%86%A0%ED%81%AC/id1858567267",
+"platform": "팟캐스트",
+"field": "여행·지역",
+"topics": [
+"부산",
+"지역 사람",
+"로컬"
+],
+"about": "부산에서 살아가는 사람들의 이야기를 나누고 지역 게스트를 초대하는 팟캐스트.",
+"subs": "",
+"recruit": ""
+},
+{
+"id": "c62",
+"name": "피플 (SBS 한국어)",
+"url": "https://podcasts.apple.com/kr/podcast/%ED%94%BC%ED%94%8C/id1755492310",
+"platform": "팟캐스트",
+"field": "기타",
+"topics": [
+"호주 한인",
+"인물 인터뷰",
+"해외 생활"
+],
+"about": "호주 SBS 한국어 프로그램의 인물 인터뷰 팟캐스트. 호주에서 활동하는 한인을 만남.",
+"subs": "",
+"recruit": ""
 }
 ]
