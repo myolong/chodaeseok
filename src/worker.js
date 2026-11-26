@@ -40,6 +40,8 @@ export class Store extends DurableObject {
         `INSERT INTO channels (id, name, url, platform, field, topics, about, subs, recruit, curated, created) VALUES (?,?,?,?,?,?,?,?,?,1,?)
          ON CONFLICT(id) DO UPDATE SET name=excluded.name, url=excluded.url, platform=excluded.platform, field=excluded.field, topics=excluded.topics, about=excluded.about, subs=excluded.subs, recruit=excluded.recruit WHERE channels.registered=0`,
         c.id, c.name, c.url, c.platform, c.field, JSON.stringify(c.topics || []), c.about || "", c.subs || "", c.recruit || "", now());
+      // 오래 새 영상이 없는 채널은 목록에서 숨김 (직접 가입하면 다시 보임)
+      if (c.inactive) this.sql.exec("UPDATE channels SET hidden=1 WHERE id=? AND registered=0", c.id);
     }
   }
   log(kind, ref, note = "") { this.sql.exec("INSERT INTO logs VALUES (?,?,?,?,?)", kst(), kind, ref, note, now()); }
