@@ -246,7 +246,7 @@ async function channelPage(id) {
         : `<h2 style="font-size:16px">아직 초대석에 가입하지 않은 채널</h2><p class="small muted">출연을 원하면 채널 소개란에 공개된 창구로 직접 문의해 주세요.</p>
            <hr style="border:0;border-top:1px solid var(--line);width:100%"><p class="small"><b>이 채널 운영자이신가요?</b></p>
            <a class="btn sm" href="#/join/channel/${c.id}">가입하고 게스트 받기</a><a class="small muted" href="#/remove/${c.id}">목록에서 빼 주세요</a>
-           <p class="small muted">가입과 목록 빼기는 채널 운영자 확인을 거친 뒤 반영돼요.</p>`}
+           <p class="small muted">가입은 채널 운영자 확인을 거친 뒤 반영돼요. 목록 빼기는 바로 반영돼요.</p>`}
       </div>
       ${c.registered ? '<button class="linkbtn" id="rep">이 채널 신고하기</button>' : ""}
     </aside>
@@ -257,11 +257,11 @@ async function channelPage(id) {
 
 async function removePage(id) {
   const c = await load("/api/channels/" + id, true);
-  $app.innerHTML = `<div class="doc"><h1>목록에서 빼기 요청</h1><p><b>${esc(c.name)}</b> 채널을 초대석 채널 지도에서 뺍니다. 다른 사람이 대신 지우지 못하도록, 채널 운영자임을 간단히 확인한 뒤 바로 목록에서 빼고 다시 올리지 않아요.</p>
-  <form id="rmf"><div class="field"><label for="rmr">이유 (선택)</label><input type="text" id="rmr" maxlength="200"></div><div class="row"><button class="btn" type="submit">다음: 운영자 확인</button><a class="btn line" href="#/channel/${c.id}">취소</a></div></form></div>`;
+  $app.innerHTML = `<div class="doc"><h1>목록에서 빼기 요청</h1><p><b>${esc(c.name)}</b> 채널을 초대석 채널 지도에서 뺍니다. 요청하는 즉시 목록에서 사라지고, 다시 올리지 않아요.</p>
+  <form id="rmf"><div class="field"><label for="rmr">이유 (선택)</label><input type="text" id="rmr" maxlength="200"></div><div class="row"><button class="btn" type="submit">목록에서 빼기</button><a class="btn line" href="#/channel/${c.id}">취소</a></div></form></div>`;
   document.getElementById("rmf").onsubmit = async (e) => {
     e.preventDefault();
-    try { const r = await api("/api/remove-request", { method: "POST", body: { id: c.id, reason: document.getElementById("rmr").value } }); location.hash = "#/claim/" + r.token; }
+    try { await api("/api/remove-request", { method: "POST", body: { id: c.id, reason: document.getElementById("rmr").value } }); clearCache(); $app.innerHTML = `<div class="empty">목록에서 뺐어요. 불편을 드려 죄송합니다.<br><br><a class="btn line sm" href="#/channels">채널 지도로</a></div>`; }
     catch (x) { toast(x.message); }
   };
 }
@@ -499,7 +499,7 @@ function aboutPage() {
   <h2>연결하지 않는 것</h2>
   <ul><li><b>연기·예능 출연자 캐스팅.</b> 배우, 모델, 예능 출연자를 모집하는 용도로 쓸 수 없습니다.</li>  <li>광고·홍보만을 위한 프로필, 다른 사람을 사칭한 프로필.</li></ul>
   <h2>채널 지도에 대해</h2>
-  <p>채널 지도는 유튜브에 공개된 채널 이름, 주소, 소개, 구독자 수로 정리했습니다. 채널 운영자의 연락처를 따로 모으지 않습니다. 초대석은 채널이 소개란에 공개한 출연·문의 창구로만, 채널 지도에 소개했다는 안내를 한 번씩 보낼 수 있습니다. 운영자가 원하면 채널 화면의 "목록에서 빼 주세요"로 뺄 수 있고, 다른 사람이 대신 지우지 못하도록 채널 운영자 확인(소개란 코드 또는 공개 메일 인증)을 거칩니다. 채널 가입도 같은 확인을 마친 뒤 반영됩니다.</p>
+  <p>채널 지도는 유튜브에 공개된 채널 이름, 주소, 소개, 구독자 수로 정리했습니다. 채널 운영자의 연락처를 따로 모으지 않습니다. 초대석은 채널이 소개란에 공개한 출연·문의 창구로만, 채널 지도에 소개했다는 안내를 한 번씩 보낼 수 있습니다. 채널 화면의 "목록에서 빼 주세요"를 누르면 바로 목록에서 뺍니다. 채널 가입은 남의 채널로 가입하는 일을 막기 위해 채널 운영자 확인(소개란 코드 또는 공개 메일 인증)을 마친 뒤 반영됩니다.</p>
   <h2>게스트가 지켜 주실 것</h2>
   <ul><li>출연 조건은 채널과 직접, 미리 분명하게 정합니다. 대가를 받고 제품·서비스를 알리는 출연이라면 영상에 &#39;유료 광고 포함&#39; 표시가 되도록 채널과 상의합니다.</li><li>사실과 다른 경력이나 이력을 적지 않습니다.</li></ul>
   <h2>신고와 숨김</h2>
@@ -527,7 +527,7 @@ function privacyPage() {
   <h2>제3자 제공과 맡기는 곳</h2>
   <p>수락한 상대에게 연락처를 보여 주는 것 외에는 다른 곳에 제공하지 않습니다. 정보는 Cloudflare(미국)의 서버에 저장됩니다.</p>
   <h2>공개된 채널 정보</h2>
-  <p>채널 지도의 정보는 유튜브에 공개된 채널 정보입니다. 채널 운영자의 개인 연락처는 모으지 않습니다. 목록에서 빼기를 요청하면 채널 운영자 확인을 거쳐 숨깁니다. 확인용으로 받은 공개 메일 주소는 확인이 끝나면 더 쓰지 않습니다.</p>
+  <p>채널 지도의 정보는 유튜브에 공개된 채널 정보입니다. 채널 운영자의 개인 연락처는 모으지 않습니다. 목록에서 빼기를 요청하면 바로 숨깁니다. 채널 가입 확인용으로 받은 공개 메일 주소는 확인이 끝나면 지웁니다.</p>
   <h2>권리</h2>
   <p>내 관리 화면에서 언제든 정보를 보고, 고치고, 지울 수 있습니다. 관리 링크를 잃어버려 지울 수 없다면 운영자 이메일 <b>chodaeseok.kr@gmail.com</b> 으로 알려 주세요.</p>
   <p class="small muted">베타 기간 초안입니다. 유료 기능을 시작하기 전에 전문가 검토를 거쳐 다시 고칩니다.</p>

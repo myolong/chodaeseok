@@ -351,8 +351,10 @@ export class Store extends DurableObject {
   removeRequest(b) {
     const c = this.one("SELECT id FROM channels WHERE id=? AND registered=0 AND hidden=0", clip(b.id, 20));
     need(c, "목록에서 찾지 못했어요. 직접 가입한 채널은 관리 페이지에서 삭제할 수 있어요.");
-    // 남이 대신 지우지 못하도록, 운영자 확인(소개란 코드 또는 공개 메일)을 거친 뒤 숨김
-    return this.newClaim("remove", c.id, { reason: clip(b.reason, 200) });
+    // 본인이 원해서 올라간 목록이 아니므로, 빼 달라는 요청은 확인 없이 바로 숨김(가입한 채널은 대상 아님)
+    this.sql.exec("UPDATE channels SET hidden=1 WHERE id=?", c.id);
+    this.log("remove-request", c.id, clip(b.reason, 200));
+    return { ok: true };
   }
 
   // ---------- 숫자 ----------
@@ -391,7 +393,7 @@ const statsPage = (s) => `<!doctype html><html lang="ko"><head><meta charset="ut
 <p>출연 제안 ${s.offers}건 중 수락 ${s.accepted}건 (4주 점검선: 제안 10건). 신고 3번으로 숨겨진 게스트 ${s.hiddenGuests}명.</p>
 <h2>최근 14일</h2><table><tr><th>날짜</th><th>게스트</th><th>채널</th><th>제안</th><th>출연</th></tr>${s.days.map((r) => `<tr><td>${r.d.slice(5).replace("-", "/")}</td><td>${r.guest}</td><td>${r.channel}</td><td>${r.offer}</td><td>${r.show}</td></tr>`).join("")}</table>
 <p>운영자 확인을 기다리는 요청: 채널 가입 ${s.claimsJoin}건 · 목록 빼기 ${s.claimsRemove}건</p>
-<h2>목록에서 뺀 채널 (운영자 확인 후)</h2><table>${s.removed.map((r) => `<tr><td>${esc(r.day)}</td><td>${esc(r.name)}</td><td>${esc(r.note)}</td></tr>`).join("") || "<tr><td>없음</td></tr>"}</table>
+<h2>목록에서 뺀 채널 (요청 즉시 숨김)</h2><table>${s.removed.map((r) => `<tr><td>${esc(r.day)}</td><td>${esc(r.name)}</td><td>${esc(r.note)}</td></tr>`).join("") || "<tr><td>없음</td></tr>"}</table>
 <h2>신고</h2><table>${s.reports.map((r) => `<tr><td>${esc(r.day)}</td><td>${esc(r.ref)}</td><td>${esc(r.note)}</td></tr>`).join("") || "<tr><td>없음</td></tr>"}</table>
 <p>한국 시간 기준. 이 화면에는 연락처 같은 개인정보를 보여 주지 않습니다.</p></body></html>`;
 
