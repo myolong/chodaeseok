@@ -37,6 +37,24 @@ async function fetchPage(u) {
     return await r.text();
   } catch { return ""; }
 }
+// 메일 중계: Cloudflare 비밀값 MAIL_URL(앱스 스크립트 웹 앱 주소)과 MAIL_SECRET이 있을 때만 동작
+async function sendMail(env, m) {
+  if (!env || !env.MAIL_URL || !env.MAIL_SECRET) return false;
+  try {
+    const r = await fetch(env.MAIL_URL, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ secret: env.MAIL_SECRET, ...m }), redirect: "follow" });
+    const d = await r.json().catch(() => ({}));
+    return !!d.ok;
+  } catch { return false; }
+}
+const verifyMailText = (name, link) => `안녕하세요, 초대석입니다.
+'${name}' 채널로 초대석 가입 요청이 들어와, 채널 소개란에 공개된 이 주소로 확인 메일을 드립니다.
+직접 요청하신 것이 맞다면 아래 링크를 눌러 가입을 마쳐 주세요. 링크를 누른 화면에서 채널 관리 링크를 드립니다.
+
+${link}
+
+요청하신 적이 없다면 이 메일을 무시해 주세요. 아무 일도 일어나지 않습니다.
+초대석 드림
+https://chodaeseok.salimdict-help.workers.dev`;
 class Bad extends Error {}
 const need = (c, msg) => { if (!c) throw new Bad(msg); };
 
@@ -47,6 +65,7 @@ export const FIELDS = ["창업·경영", "책·글쓰기", "강의·교육", "�
 export class Store extends DurableObject {
   constructor(ctx, env) {
     super(ctx, env);
+    this.env = env;
     this.sql = ctx.storage.sql;
     this.sql.exec(`
       CREATE TABLE IF NOT EXISTS guests (id TEXT PRIMARY KEY, token TEXT UNIQUE, name TEXT, headline TEXT, field TEXT, topics TEXT, bio TEXT, links TEXT, mode TEXT, region TEXT, contact TEXT, created INTEGER, updated INTEGER, hidden INTEGER DEFAULT 0, reports INTEGER DEFAULT 0);
@@ -156,15 +175,25 @@ export class Store extends DurableObject {
     return this.approve(row, "code");
   }
   // 공개 메일 인증: 채널 소개란에 공개된 메일 주소를 찾아 두면 운영자가 그 주소로 인증 링크를 보냄
-  async requestMail(token) {
+  // 메일 중계(구글 앱스 스크립트)가 설정돼 있으면 공개 메일로 인증 링크를 바로 보내고 운영자에게 알림
+  async requestMail(token, origin) {
     const { kind, row } = this.who(token);
     need(kind === "claim", "확인할 요청이 없어요.");
+    need(row.status !== "mail-sent", "이미 인증 링크를 보냈어요. 메일함(스팸함 포함)을 확인해 주세요.");
     const info = this.claimInfo(row);
     const html = await fetchPage(info.url);
     const mail = html ? findMail(html) : "";
-    this.sql.exec("UPDATE claims SET vmail=?, status=? WHERE id=?", mail, mail ? "mail" : "mail-manual", row.id);
-    this.log("claim-mail", row.id, mail ? "found" : "none");
-    return { ok: true, vmail: maskMail(mail) };
+    let sent = false;
+    if (mail) {
+      const link = `${origin}/#/verify/${row.id}/${row.secret}`;
+      sent = await sendMail(this.env, { to: mail, subject: "[초대석] 채널 가입 확인 링크", body: verifyMailText(info.name, link) });
+    }
+    const status = mail ? (sent ? "mail-sent" : "mail") : "mail-manual";
+    this.sql.exec("UPDATE claims SET vmail=?, status=? WHERE id=?", mail, status, row.id);
+    this.log("claim-mail", row.id, status);
+    await sendMail(this.env, { notify: true, subject: `[초대석] 채널 확인 요청: ${info.name}`,
+      body: `채널: ${info.name}\n주소: ${info.url}\n` + (sent ? `채널 소개란의 공개 메일(${mail})로 인증 링크를 자동으로 보냈어요. 채널 쪽에서 링크를 누르면 가입이 끝나요.` : mail ? `공개 메일(${mail})을 찾았지만 자동 발송에 실패했어요. 운영자 화면에서 문안을 복사해 보내 주세요.` : `채널 소개란에서 공개 메일을 찾지 못했어요. 채널에 공개된 연락처를 직접 확인해 주세요.`) + `\n\n운영자 화면: ${origin}/admin` });
+    return { ok: true, vmail: maskMail(mail), sent };
   }
   // 메일로 받은 인증 링크: 링크를 연 사람에게 새 관리 링크를 줌(요청한 사람이 메일 주인이 아니면 관리 권한을 못 가짐)
   verifyMail(id, secret) {
@@ -198,6 +227,7 @@ export class Store extends DurableObject {
     }
     this.sql.exec("UPDATE claims SET status='done', done=?, vmail='', data='{}' WHERE id=?", now(), cl.id);
     this.log("channel", id, how);
+    this.ctx.waitUntil(sendMail(this.env, { notify: true, subject: `[초대석] 채널 가입 완료: ${c.name}`, body: `채널: ${c.name}\n주소: ${c.url}\n확인 방법: ${how === "code" ? "소개란 코드" : how === "mail" ? "공개 메일 인증 링크" : "운영자 직접 승인"}` }));
     return { ok: true, kind: "join", id, token: cl.token, name: c.name };
   }
   cancelClaim(token) {
@@ -209,7 +239,7 @@ export class Store extends DurableObject {
 
   // ---------- 운영자 화면 ----------
   adminList() {
-    return this.rows("SELECT * FROM claims WHERE status IN ('pending','mail','mail-manual') ORDER BY created DESC LIMIT 100")
+    return this.rows("SELECT * FROM claims WHERE status IN ('pending','mail','mail-sent','mail-manual') ORDER BY created DESC LIMIT 100")
       .map((cl) => ({ id: cl.id, secret: cl.secret, vmailFull: cl.vmail, reason: JSON.parse(cl.data || "{}").reason || "", ...this.claimInfo(cl) }));
   }
   adminDecide(id, ok) {
@@ -230,7 +260,7 @@ export class Store extends DurableObject {
     if (g) return { kind: "guest", row: g };
     const c = this.one("SELECT * FROM channels WHERE token=?", token);
     if (c) return { kind: "channel", row: c };
-    const cl = this.one("SELECT * FROM claims WHERE token=? AND status IN ('pending','mail','mail-manual')", token);
+    const cl = this.one("SELECT * FROM claims WHERE token=? AND status IN ('pending','mail','mail-sent','mail-manual')", token);
     if (cl) return { kind: "claim", row: cl };
     const old = this.one("SELECT kind, status FROM claims WHERE token=?", token);
     if (old && old.status === "done" && old.kind === "remove") throw new Bad("목록에서 빼기를 마친 요청이에요.");
@@ -375,8 +405,8 @@ export class Store extends DurableObject {
       shows: n("SELECT COUNT(*) n FROM shows"),
       hiddenGuests: n("SELECT COUNT(*) n FROM guests WHERE hidden=1"),
       removed: this.rows("SELECT l.day, l.note, c.name FROM logs l LEFT JOIN channels c ON c.id=l.ref WHERE l.kind='remove-request' ORDER BY l.at DESC LIMIT 20"),
-      claimsJoin: n("SELECT COUNT(*) n FROM claims WHERE kind='join' AND status IN ('pending','mail','mail-manual')"),
-      claimsRemove: n("SELECT COUNT(*) n FROM claims WHERE kind='remove' AND status IN ('pending','mail','mail-manual')"),
+      claimsJoin: n("SELECT COUNT(*) n FROM claims WHERE kind='join' AND status IN ('pending','mail','mail-sent','mail-manual')"),
+      claimsRemove: n("SELECT COUNT(*) n FROM claims WHERE kind='remove' AND status IN ('pending','mail','mail-sent','mail-manual')"),
       reports: this.rows("SELECT day, ref, note FROM logs WHERE kind='report' ORDER BY at DESC LIMIT 20"),
       days,
     };
@@ -474,7 +504,7 @@ async function handle(req, env) {
     if (p === "/api/report") return call(() => db.report(b));
     if (p === "/api/remove-request") return call(() => db.removeRequest(b));
     if (p === "/api/claim/check") return call(() => db.checkCode(tok));
-    if (p === "/api/claim/mail") return call(() => db.requestMail(tok));
+    if (p === "/api/claim/mail") return call(() => db.requestMail(tok, u.origin));
     if (p === "/api/claim/cancel") return call(() => db.cancelClaim(tok));
   }
   return json({ error: "없는 주소예요." }, 404);

@@ -276,7 +276,8 @@ async function claimPage(token) {
 function claimView(token, c, isMine) {
   const join = c.kind === "join", yt = /youtube\.com|youtu\.be/i.test(c.url);
   const link = `${location.origin}/#/${isMine ? "me" : "claim"}/${token}`;
-  const mailState = c.status === "mail" ? `<p class="notice">채널 소개란에 공개된 <b>${esc(c.vmail)}</b> 주소로 운영자가 인증 링크를 보내 드려요(보통 하루 안). 메일의 링크를 누르면 ${join ? "가입이 끝나고 그 화면에서 관리 링크를 드려요" : "바로 목록에서 빠져요"}.</p>`
+  const mailState = c.status === "mail-sent" ? `<p class="notice">채널 소개란에 공개된 <b>${esc(c.vmail)}</b> 주소로 인증 링크를 보냈어요. 메일함(스팸함 포함)에서 '초대석' 메일을 열고 링크를 누르면 ${join ? "가입이 끝나고 그 화면에서 관리 링크를 드려요" : "바로 목록에서 빠져요"}.</p>`
+    : c.status === "mail" ? `<p class="notice">채널 소개란에 공개된 <b>${esc(c.vmail)}</b> 주소로 운영자가 인증 링크를 보내 드려요(보통 하루 안). 메일의 링크를 누르면 ${join ? "가입이 끝나고 그 화면에서 관리 링크를 드려요" : "바로 목록에서 빠져요"}.</p>`
     : c.status === "mail-manual" ? `<p class="notice">채널 소개란에서 메일 주소를 자동으로 찾지 못했어요. 운영자가 채널에 공개된 연락처를 직접 확인해 연락드릴게요. 더 빠르게 하려면 위의 소개란 코드 확인을 이용해 주세요.</p>` : "";
   $app.innerHTML = `<div class="doc" style="max-width:720px"><p class="eyebrow">${join ? "채널 가입" : "목록에서 빼기"} · 운영자 확인</p>
   <h1>${esc(c.name)} 채널 운영자이신지 확인할게요</h1>
